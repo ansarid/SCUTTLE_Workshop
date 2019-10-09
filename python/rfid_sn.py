@@ -10,7 +10,7 @@ SimpleMFRC522.KEY = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
 
 try:
     while 1:    # Infinite loop.
-        id, text = reader.read()
+        id, text = reader.read()   # Read RFID tag serial number and data
         with open(filename, 'w+') as out:   # Open file (creates file if it does not already exist.) to write data to.
             out.write(id[-4:]+"\n")     # Write last 4 digits of S/N variable to file.
 
