@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import time                 # import time for sleep()
 import L1_servo as servo    # import L1_servo as servo for servo control
 
