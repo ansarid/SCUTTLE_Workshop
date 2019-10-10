@@ -10,7 +10,8 @@ rooms = {
 }
 
 reader = SimpleMFRC522()
-filename = "/tmp/location.txt"   # File path we will send our battery voltage data to.
+location_filename = "/tmp/location.txt"   # File path we will send our location data to.
+sn_filename = "/tmp/rfid_sn.txt"   # File path we will send our RFID serial number data to.
 
 # If this key doesnt work for you, try running find_key.py to find the key for your RFID
 SimpleMFRC522.KEY = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
@@ -19,7 +20,9 @@ try:
     while 1:    # Infinite loop.
         id, text = reader.read()   # Read RFID tag serial number and data
         sn = str(id)[-4:]
-        with open(filename, 'w+') as out:   # Open file (creates file if it does not already exist.) to write data to.
+        with open(sn_filename, 'w+') as out:   # Open file (creates file if it does not already exist.) to write data to.
+            out.write(sn+"\n")  # Write last 4 digits of S/N variable to file.
+        with open(location_filename, 'w+') as out:   # Open file (creates file if it does not already exist.) to write data to.
             out.write(rooms[str(sn)]+"\n")  # Write last 4 digits of S/N variable to file.
 
 except KeyboardInterrupt:
